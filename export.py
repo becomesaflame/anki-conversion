@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Pull images for an Anki text export into a folder
 
 import argparse
