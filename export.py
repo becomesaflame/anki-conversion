@@ -8,12 +8,12 @@ import os
 import shutil
 
 
-mediaDir = '~/.local/share/Anki2/User 1/collection.media' 
-
 def parseArgs():
-  parser = argparse.ArgumentParser()
+  parser = argparse.ArgumentParser(description="Pull images for an Anki text export into a folder. \nExample: \npython path/to/text/filename path/to/export/location")
   parser.add_argument('filename', help="Name of Anki text export file")
   parser.add_argument('export_location', help="Name of folder to export images to")
+  parser.add_argument('--img-src-dir', dest='mediaDir', default='~/.local/share/Anki2/User 1/collection.media', 
+                      help='Path to directory containing Anki images') 
   return parser.parse_args()
 
 
@@ -34,7 +34,7 @@ def pullImages(inFile):
 
   return images
 
-def storeImages(images, folder):
+def storeImages(images, folder, mediaDir):
   '''
   Get each image in the list of images and store it in the specified
   folder
@@ -59,5 +59,5 @@ def storeImages(images, folder):
 if __name__ == '__main__':
   args = parseArgs()
   images = pullImages(args.filename) 
-  storeImages(images, args.export_location) 
+  storeImages(images, args.export_location, args.mediaDir) 
 
