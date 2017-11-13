@@ -45,7 +45,9 @@ def storeImages(images, folder, mediaDir):
     os.mkdir(folder) 
   except OSError as exception: 
     # TODO check if folder is empty and continue if it is
-    raise
+    if exception.errno == 17:
+      os.rmdir(folder)
+      os.mkdir folder
 
   # Copy images into directory
   for img in images:
