@@ -46,7 +46,7 @@ def storeImages(images, folder, mediaDir):
   except OSError as exception: 
     if exception.errno == 17:
       os.rmdir(folder)
-      os.mkdir folder
+      os.mkdir(folder)
 
   # Copy images into directory
   for img in images:
